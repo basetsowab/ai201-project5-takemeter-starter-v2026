@@ -39,140 +39,190 @@
 
 ## What This Does
 
-<!-- Your community, and what your classifier sorts posts into. Three or four
-     sentences. -->
-
-
+My community is [Money Stack Exchange](https://money.stackexchange.com/), the
+personal finance and money Q&A site. Every post there is a question, so the
+classifier sorts each one by **what kind of answer the asker needs**:
+`concept`, an explanation of how something works; `procedure`, a specific
+factual answer from a rule, form or institution's terms; or `decision`, a
+judgment call about what this person should do. A tool like this could send
+`decision` posts to people willing to weigh trade-offs, and `procedure` posts
+to people who know the rules.
 
 ---
 
 ## Label Taxonomy
 
-<!-- Each label: a one-sentence definition and two real examples from your
-     reading. Then your decision rule for the hardest boundary.
+### `concept`
 
-     The decision rule is worth a point on its own and it's the thing most
-     people leave out. Every taxonomy has a hardest boundary. Name yours. -->
+**Definition:** asks how or why a financial product, rule or market mechanism
+works in general, and the answer would be the same for anyone who asked.
 
-### `label_one`
+**Example 1:** ([source](https://money.stackexchange.com/questions/170076/what-exactly-is-the-source-of-the-equity-risk-premium))
+> What exactly is the source of the equity risk premium? According to capital
+> market theory, the reason equities as an investment class earn a premium on
+> bonds is that they are "riskier"…
 
-**Definition:**
+**Example 2:** ([source](https://money.stackexchange.com/questions/169714/since-brokers-make-money-by-trading-why-restrict-on-ipo-trading))
+> Since brokers make money by trading, why restrict on IPO trading? … What do
+> these brokers gain by restricting trading?
 
-**Example 1:**
->
+### `procedure`
 
-**Example 2:**
->
+**Definition:** asks how to carry out a specific step, or what a rule, form or
+fee says applies, where a correct answer exists in the rules or in the
+institution's terms. This includes "is this legit or a scam?" checks.
 
-### `label_two`
+**Example 1:** ([source](https://money.stackexchange.com/questions/170204/how-do-i-sell-all-my-shares-of-a-non-vanguard-etf-including-fractional-shares))
+> I own 226.4570 shares of some ETF in a Vanguard account. On the sell screen,
+> the number-of-shares field only accepts a whole number. How do I sell all my
+> shares…
 
-**Definition:**
+**Example 2:** ([source](https://money.stackexchange.com/questions/169531/how-to-properly-report-a-conversion-from-traditional-ira-to-roth-ira-in-turbotax))
+> How to properly report a conversion from traditional IRA to Roth IRA in
+> TurboTax online?
 
-**Example 1:**
->
+### `decision`
 
-**Example 2:**
->
+**Definition:** asks which option the poster should choose for their own
+situation, where the answer depends on their goals, risk or circumstances
+rather than on a rule.
+
+**Example 1:** ([source](https://money.stackexchange.com/questions/170043/should-i-let-my-mother-lien-my-car-as-part-of-her-bankruptcy))
+> My mom gifted me a new car 2 years ago. She is now filing for bankruptcy and
+> wants to put a lien on my car. … Should I do it and why?
+
+**Example 2:** ([source](https://money.stackexchange.com/questions/169122/pay-off-mortgage-and-invest-or-stay-the-course))
+> I owe 45000 at a 3% loan on a home worth 700,000. I have the money to pay
+> this off and could invest what I am currently paying per month…
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `procedure` and `decision`
 
-**The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
-
-
+**The decision rule I used every time:** if a correct answer exists in the tax
+code, the law or the institution's terms, the post is `procedure`, even when
+it's phrased "should I…". It's `decision` only when two reasonable people,
+given the same facts, could rightly choose differently.
 
 ---
 
 ## The Dataset
 
-<!-- Where you collected from, how you labelled, your counts, and three hard
-     cases. -->
+**Where the posts came from:** the 274 most recent open questions on Money
+Stack Exchange (pulled through the public Stack Exchange API in November
+2026), with closed questions and posts with almost no body dropped. 210 of
+them were picked at random (seed 5). Each post is the title plus the full
+body, untrimmed. Links and authors are in `data/money_se_sources.csv`, since
+Stack Exchange content is CC BY-SA. I first chose r/personalfinance, but
+Reddit couldn't be reached from the tools I was using, so I switched to the
+closest community that could.
 
-**Where the posts came from:**
-
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+**How I labelled them:** all 210 were pre-labelled by Claude (an AI
+assistant), and the `note` column in `labels.csv` says so on every row. **No
+cold labels: I have not yet done the 20 labels the brief asks for without
+help, and I haven't yet reviewed Claude's labels.** 14 rows Claude marked as
+unsure are flagged `unsure` in the note.
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `procedure` | 124 | 59.0% |
+| `concept` | 60 | 28.6% |
+| `decision` | 26 | 12.4% |
+| **Total** | 210 | 100% |
 
 **Three hard cases**
 
-<!-- Any post that made you pause: what it was, which two labels it could have
-     been, and what you chose. These are worth more than the easy 190. -->
+**1.** ([source](https://money.stackexchange.com/questions/166880/u-s-stocks-sell-highest-cost-long-term-lots-first-to-pay-less-tax))
+> *The post:* "Sell Highest-Cost Long-Term Lots First to Pay Less Tax?", from
+> someone who bought a little stock every day for five years.
+>
+> *Could have been:* `decision` or `procedure`
+>
+> *I chose `procedure`, because:* it reads like a choice, but the tax rules on
+> lot selection and long-term vs. short-term gains settle it. Under the
+> decision rule, a rule-answerable "should I" is `procedure`.
 
-**1.**
-> *The post:*
+**2.** ([source](https://money.stackexchange.com/questions/166899/do-multiple-credit-cards-help-or-hurt-credit-score-for-young-person-with-no-cred))
+> *The post:* a parent asking whether their 19-year-old should keep a second,
+> better rewards card or stick with one, for the sake of his credit score.
 >
-> *Could have been:*
+> *Could have been:* `concept` (how credit scoring treats new accounts) or
+> `decision`
 >
-> *I chose, because:*
+> *I chose `decision`, because:* the real question is whether *this* son should
+> keep the second card, and the answer depends on how he'll use it.
 
-**2.**
-> *The post:*
+**3.** ([source](https://money.stackexchange.com/questions/166737/what-happens-if-i-overpay-a-credit-card-bill))
+> *The post:* "What happens if I overpay a credit card bill?", a hypothetical
+> $3,000 payment on a $2,000 bill.
 >
-> *Could have been:*
+> *Could have been:* `procedure` or `concept`
 >
-> *I chose, because:*
+> *I chose `concept`, because:* it's a "what happens if" about how card
+> balances work for anyone, with no account of the poster's own to settle.
 
-**3.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+<!-- TODO (basetsowab): these three are the cases Claude found hardest while
+     pre-labelling. Replace or rewrite them with posts that made YOU pause
+     once you've reviewed the labels. -->
 
 ---
 
 ## The Training Run
 
-<!-- Your starting model, your settings, and anything you changed and why. -->
+**Base model:** `distilbert-base-uncased`
 
-**Base model:**
+**Settings:** 3 epochs, learning rate 2e-5, batch size 16, max length 128
+tokens, seed 42. Trained on CPU (`torch 2.15.0+cpu`).
 
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+**Anything I changed from the defaults, and why:** nothing. One thing to know
+about this dataset: the average post is about 980 characters, which is more
+than 128 tokens, so the model often sees only the title and the first few
+sentences.
 
-**Anything I changed from the defaults, and why:**
+**Split sizes:** 146 train / 32 val / 32 test.
 
-**Split sizes:** <!-- train / val / test, and per-label counts in the test
-split. If a label had fewer than about 8 in test, say so — it explains a lot
-of next unit's variance. -->
+| Label | Train | Val | Test |
+|---|---|---|---|
+| `procedure` | 86 | 19 | 19 |
+| `concept` | 42 | 9 | 9 |
+| `decision` | 18 | 4 | 4 |
 
+`decision` has only **4** test examples, under the 8 the notebook warns about,
+so its F1 can only move in steps of about 0.2 and will swing between seeds.
 
+**Result:** the model predicted `procedure` for **all 32** test posts. Accuracy
+was 0.594, which is exactly `procedure`'s share of the test split, and macro
+F1 was 0.248. F1 was 0.745 for `procedure` and 0.000 for both `concept` and
+`decision`. In other words, at these settings the fine-tune learned only the
+majority label.
 
 ---
 
 ## How I Used AI
 
-<!-- Two specific moments — what you asked, what came back, what you changed.
-
-     ⚠️ Plus disclosure of any pre-labelling. If you had a model pre-label a
-     batch and then read and corrected every one, say that. It's an allowed
-     workflow and disclosing it costs you nothing. Not disclosing it is the
-     problem. -->
-
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* to collect about 200 real posts from my community.
+- *What came back:* Reddit was blocked for every tool Claude had, so it
+  suggested Money Stack Exchange and pulled 274 recent questions through the
+  public API, with links.
+- *What I changed:* I switched my community from r/personalfinance to Money
+  Stack Exchange.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* to design the labels and pre-label the posts.
+- *What came back:* the `concept` / `procedure` / `decision` taxonomy, the
+  decision rule above, and a label for every one of the 210 posts.
+- *What I changed:* nothing yet. <!-- TODO (basetsowab): after reviewing,
+  say which labels you changed and why. -->
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** every label in `labels.csv` was assigned by
+Claude, an AI assistant. As of this commit I have not yet labelled 20 posts
+cold or reviewed Claude's labels. The `note` column marks every row as
+pre-labelled and not yet reviewed.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
