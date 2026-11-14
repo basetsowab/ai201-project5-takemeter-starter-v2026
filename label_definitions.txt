@@ -1,10 +1,6 @@
 # Your label definitions, one per line, as `label: definition`.
-#
-# Copy these from your README so the baseline is judged on exactly the
-# definitions you wrote. baseline.py reads this file.
-#
-# Delete the examples below and put yours in.
+# baseline.py reads this file. Keep it identical to the README's Label Taxonomy.
 
-analysis: makes an argument backed by a specific, checkable fact
-hot_take: a confident claim with no support offered
-reaction: an immediate response to something that just happened
+concept: asks how or why a financial product, rule or market mechanism works in general, and the answer would be the same for anyone who asked
+procedure: asks how to carry out a specific step, or what a rule, form or fee says applies, where a correct answer exists in the rules or the institution's terms
+decision: asks which option the poster should choose for their own situation, where the answer depends on their goals, risk or circumstances rather than on a rule
