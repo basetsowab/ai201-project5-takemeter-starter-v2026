@@ -233,86 +233,103 @@ pre-labelled and not yet reviewed.
 
 ## Baseline vs. Trained
 
-<!-- Both models on the same posts. `python baseline.py --trained results.json`
-     prints this table for you. -->
+Both models were scored on the same 32 posts in `test_split.csv`. The baseline
+is `facebook/bart-large-mnli` zero-shot, using the definitions in
+`label_definitions.txt`.
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.719 | 0.594 | -0.125 |
+| Macro F1 | 0.603 | 0.248 | -0.354 |
+| F1 — `concept` | 0.000 | 0.000 | +0.000 |
+| F1 — `decision` | 1.000 | 0.000 | -1.000 |
+| F1 — `procedure` | 0.809 | 0.745 | -0.063 |
 
-**What I predicted before I looked:**
-<!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
-     prediction made afterwards isn't one. -->
+**What I predicted before I looked:** no prediction was written down before
+these numbers were run, so I don't have one to report.
+<!-- TODO (basetsowab): leave this honest. Don't backfill a prediction. -->
 
-**What the gap actually means:**
-<!-- If the baseline matched your trained model, your fine-tuning added
-     nothing — and that is a real finding, not a failure. Say it plainly. -->
-
-
+**What the gap actually means:** my fine-tuning added nothing, and was worse
+than no training at all. The zero-shot model, given only three one-line
+definitions, beat it by 12.5 points of accuracy and found all 4 `decision`
+posts, while the trained model found none. The trained model's 0.594 is
+exactly what you get by always answering `procedure`. Neither model gets a
+single `concept` post right, so `concept` is the label my definitions and
+data both fail to make distinct.
 
 ---
 
 ## Run Log — Before
 
-<!-- Five criteria across three seeds. The notebook's section 6 prints the
-     spread table; the Target and Verdict columns are yours. -->
+Three seeds, default settings, CPU (`torch 2.15.0+cpu`). Results are in
+`results_three_seeds_before.json`.
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.72 | 0.594 | 0.594 | 0.594 | MISSED |
+| 2. Macro F1 | ≥ 0.60 | 0.248 | 0.248 | 0.248 | MISSED |
+| 3. F1 `decision` | ≥ 0.40 | 0.000 | 0.000 | 0.000 | MISSED |
+| 4. F1 `procedure` | ≥ 0.80 | 0.745 | 0.745 | 0.745 | MISSED |
+| 5. Confidence gap (most- minus least-sure third) | ≥ 0.15 | 0.80 | 0.60 | 0.30 | MET |
+
+The spread is 0.000 on every measure. That isn't stability: all three models
+gave the same answer to every post.
 
 ### Confusion matrix
 
-<!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
-     An image of a matrix earns nothing. -->
+Seed 42. Seeds 7 and 2024 are identical.
 
-| true \ predicted |  |  |  |
+| true \ predicted | concept | procedure | decision |
 |---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| **concept** | 0 | 9 | 0 |
+| **procedure** | 0 | 19 | 0 |
+| **decision** | 0 | 4 | 0 |
 
-**My biggest off-diagonal number, and what it means:**
-<!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
-     direction. "7 real analysis posts were called hot_take and only 3 went the
-     other way" is a direction, not just an error rate. -->
-
-
+**My biggest off-diagonal number, and what it means:** 9 real `concept` posts
+were called `procedure`, and 0 went the other way. That direction is total
+because the model never predicts anything but `procedure`. It didn't learn
+the `concept`/`procedure` boundary, or any boundary. It learned the
+majority label.
 
 ---
 
 ## Verdicts and Diagnoses
 
-<!-- MET or MISSED against LAST UNIT's target. The target has to hold across
-     all three seeds, not turn up sometimes. -->
-
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | ≥ 0.72 | MISSED | 0.594 on all three seeds |
+| 2 | Macro F1 | ≥ 0.60 | MISSED | 0.248 on all three seeds |
+| 3 | F1 `decision` | ≥ 0.40 | MISSED | 0.000 on all three seeds; no post was ever predicted `decision` |
+| 4 | F1 `procedure` | ≥ 0.80 | MISSED | 0.745 on all three seeds, high recall but precision only 0.594 |
+| 5 | Confidence gap | ≥ 0.15 | MET | 0.80, 0.60 and 0.30, all above 0.15 |
 
 **Diagnoses**
 
-<!-- For each miss: the cause, and how you know. The four common causes are:
-     too few examples for a label, a boundary you applied inconsistently, a
-     genuinely hard label pair, and a task the model can't reach from this
-     much data.
+- **Criteria 1–4: a task the model can't reach from this much training.**
+  With 146 training posts, batch size 16 and 3 epochs, the model takes about
+  30 optimisation steps (10 per epoch) at learning rate 2e-5. The evidence is that every seed
+  gives the identical single-column matrix: three different splits and three
+  different initialisations all end at "always `procedure`". That pattern
+  points at the training budget, not at any one split. The baseline also
+  shows the task is reachable: a model with no training at all found every
+  `decision` post.
+- **Criterion 3: too few examples for a label.** `decision` has 18 training
+  posts and 4 test posts. Even a working model would struggle to learn it, and
+  its F1 can only move in steps of about 0.2.
+- **`concept` for both models: possibly a boundary applied inconsistently.**
+  Both the trained model and the baseline score 0.000 on `concept`. That could
+  mean my `concept` and `procedure` labels overlap. Several of my unsure
+  pre-labels (for example, the I-bond and CD interest posts) sit right on that
+  line.
+- **Criterion 5 MET, but read it carefully.** Every prediction is `procedure`,
+  so "confident" just means "more confidently `procedure`". The posts the
+  model is surest about really are `procedure` posts, which shows the model
+  picked up some signal even though it never acts on it.
 
-     ⚠️ Use your agreement report as evidence. It is the only instrument you
-     have that can tell a LABELLING problem from a MODEL problem, and this
-     section is graded on whether you used it that way. -->
-
-
+<!-- TODO (basetsowab): the agreement report is the evidence that separates a
+     labelling problem from a model problem, especially for the concept /
+     procedure line. Add it here once data/staff_labels.csv arrives from your
+     TF and agreement.py has run. -->
 
 ---
 

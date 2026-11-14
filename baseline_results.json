@@ -1,0 +1,194 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 32,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": true,
+  "scores": {
+    "n": 32,
+    "accuracy": 0.71875,
+    "f1_macro": 0.6028368794326241,
+    "per_label": {
+      "concept": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 9
+      },
+      "decision": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "procedure": {
+        "precision": 0.6785714285714286,
+        "recall": 1.0,
+        "f1": 0.8085106382978724,
+        "support": 19
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "What is the difference between the balance of an account and the total amount money of it?\n\nAre these equations correct?\n\nBalance = asset - debt  \nTotal amount of money = asset - debt\n\nIf yes, then I don't get why we need to use the word \"balance\" instead of \"total\". I read the Wikipedia page of \nbalance\n but I don't see the answer. What's more on \"balance\" that \"total\" doesn't have?",
+      "gold": "concept",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Is someone asking me, online, to write an invitation letter for their visa application, a scam?\n\nA woman, who I met online, asked me for an invitation letter, for her visa, to come back to the USA. Is this a scam (to get my information)?",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Brass as a commodity metal in the commodity exchanges\n\nHow can brass be rated as a commodity metal in the commodity exchanges?",
+      "gold": "concept",
+      "predicted": "procedure"
+    },
+    {
+      "text": "What records should I keep for small crypto trades?\n\nI make occasional small BTC and ETH trades, and I want to keep proper personal finance records for tax and tracking purposes.\n\nFor each crypto trade, what information should an individual investor save?\n\nFor example, should I record:\n\ntrade date and time\n\nasset pair\n\nbuy or sell price\n\nfees\n\ndeposits and withdrawals\n\nwallet transfers\n\nrealized gains or losses\n\nmonthly statements or screenshots\n\nAlso, if I later transfer crypto to a wallet or another exchange, how should I document that so it does not look like a separate taxable sale?\n\nI know tax rules depend on the country, but I am trying to understand the general record-keeping approach before I trade more frequently.",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Allocation of mortgage interest deduction between joint homeowners\n\nTwo US taxpayers, A and B, own a home together as joint tenants.  They both live in the home, and it is their \"main home\" for tax purposes.  A and B are not married to each other and never have been, and they each file their taxes as \"single\".\n\nThere is a mortgage on the home, in the name of A and B jointly, and they each meet the criteria to take the \nhome mortgage interest deduction\n.  They each pay half of the monthly mortgage payments.  Must they divide the deduction equally, or may they divide it unequally if this is advantageous to them?\n\nFor example, suppose that in a given year, the mortgage payments totaled $40,000, of which $10,000 was principal and $30,000 was interest.  A and B each paid $20,000.\n\nBy default, each of them would say they paid $5,000 in principal and $15,000 in interest, and each would take a $15,000 mortgage interest deduction.  But could they instead say that the $20,000 paid by A was entirely interest, and that B paid the entire $10,000 in principal plus the remaining $10,000 in interest?  That would result in A taking a $20,000 deduction, and B taking a $10,000 deduction.  This might be advantageous if A is in a higher tax bracket, or if A itemizes and B does not.\n\nPub. 936 (linked above) has a section \"More than one borrower\":\n\nMore than one borrower.\n If you and at least one other person (other than your spouse if you file a joint return) were liable for and paid interest on a mortgage that was for your home, and the other person received a Form 1098 showing the interest that was paid during the year, attach a statement to your paper return explaining this. Show how much of the interest each of you paid, and give the name and address of the person who received the form. Deduct your share of the interest on Schedule A (Form 1040), line 8b, and print \u201cSee attached\u201d next to the line.\n\nBut it does not specify how the shares are to be determined.\n\nMarried Filing Separately - Who Can Deduct Mortgage Interest\n is similar, but in that case the taxpayers are married filing separately, and the mortgage is in the name of only one of them.\n\nReferences to official information would be ideal.\n\n(Bonus question: is there a legal way for A to deduct the entire $30,000 despite only actually paying $20,000 out of pocket?  For instance, suppose that B gifts $20,000 to A (ignoring any gift tax implications), and A then pays the entire mortgage for the year and claims the full deduction.)",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Why would a private investment fund set a \u201ctarget maximum investment\u201d per investor?\n\nI am reading an invitation to invest in a single-asset fund that would own shares in a private company. The offering lists a target minimum investment and a target maximum investment.  I understand that the target minimum investment is to avoid having to deal with too many investors.  But why would a private investment fund set a \u201ctarget maximum investment\u201d per investor?  The target maximum investment an order magnitude lower than the amount of fund that is available for subscription. Is that just to making more investors \"happy\" be allowing them into the fund in case the offer get oversubscribed, or can there be another reason?",
+      "gold": "concept",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Why is the quoted OTGLF stock price so out of date?\n\nI am very confused as to what is happening with the OTGLF stock (CD Projekt).\n\nI have some of these stocks in my Fidelity account, and my portfolio summary shows the current price as $59.36 (as of 6/26/2026). However, Fidelity's info page for OTGLF shows a last price of $75.58 as of \n4/15/2026\n.\n\nThe following sites are also quoting similar last prices as of 4/15:\n\nhttps://seekingalpha.com/symbol/OTGLF\n\nhttps://www.tradingview.com/symbols/OTC-OTGLF/?timeframe=12M\n\n4/15 was a long time ago now and this seems rather strange. Is this stock still being actively traded? If not, then why is the price still apparently being updated on Fidelity?\n\nIs anyone able to shed some light on the situation here? I know the CD Projekt company certainly hasn't gone under or anything.",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Why is my Interactive Brokers maintenance margin much higher than the ETF requirements?\n\nI have a margin account at Interactive Brokers where I invest in just two ETFs. According to IB, each of these ETFs has a 25% maintenance margin requirement.\n\nCurrently, I have borrowed \u20ac28,960. However, when I look at my account, the reported maintenance margin requirement is \u20ac21,211. That corresponds to a maintenance margin of\n\n21,211/(21,211 + 28,960) * 100 = 42.2%.\n\nI understand that IB can apply a \u201chouse margin\u201d, making the effective requirement higher than the stated 25%. But 42.2% seems unusually high, especially considering that I\u2019m invested in relatively broad ETFs (S&P 600 and a global ETF).\n\nSo my questions are:\n\nAm I misunderstanding how IB calculates maintenance margin?\n\nIs there anything I can do to lower the effective maintenance margin closer to 25%?",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "How do you determine the second lowest cost Silver plan (SLCSP) if there are no Silver plans available in your area?\n\nI'm looking at health insurance plans for 2026 and curiously, even though there are 46 in my area, \nall\n of them are Gold or Bronze. Since there are no Silver plans, how is the second lowest cost Silver plan (SLCSP) premium determined for the purpose of the subsidy / premium tax credit? I see there are rules for if there is only one Silver plan available, but I don't see anything about no Silver plans. Is it possible that this results in a SLCSP of zero, meaning no premium subsidy / tax credit is available?",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Unauthorized Withdrawal After Sharing Bank Details: Questions on Risk and Prevention\n\nI need to receive payments from several institutions, so I shared my bank routing number and account number with a few people for legitimate purposes. Recently, however, I discovered an unauthorized transaction of several thousand dollars withdrawn from my bank account.\n\nMy questions are:\n\nWhy does the banking system allow withdrawals using only a routing number and account number?\nThese numbers are required for me to receive payments, but I do not understand why possession of the same information also allows others to withdraw funds without my explicit authorization.\n\nHow can I prevent this from happening again while still being able to receive regular payments from organizations?\nAre there safeguards, account settings, or alternative arrangements that would allow me to accept deposits without exposing my account to unauthorized withdrawals?",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "How is the max share price used by the broker when a customer indicates interest for an IPO?\n\nSome brokers allow their customers to specify a max share price when indicate interest for an IPO. Examples of such brokers: Robinhood and E-Trade. Examples of brokers who don't let customers specify a max share price: Charles Schwab and Fidelity (or maybe that depends on the IPO?).\n\nHow is the max share price used by the broker when a customer indicates interest for an IPO?\n\nExample of a max share price on E-Trade:\n\nExample of a max share price on Robinhood:",
+      "gold": "concept",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Has anyone had a PayPal dispute reopened for manual review?\n\nI\u2019m looking for experiences from anyone who has been through a similar PayPal case.\n\nMy dispute was initially closed in the seller\u2019s favor. I then contacted PayPal Support, and they manually reopened the case for an appeal.\n\nWhen I originally opened the dispute, the available reason was \u201cRefund Payments Not Received\u201d / \u201cSeller Agreed to Refund Payments\u201d. I could not see an option to file an \u201cItem Not Received\u201d dispute in my Resolution Center.\n\nThe seller also posted a statement inside the Resolution Center confirming that they received the payment, did not ship the laptop, and did not issue a refund.\n\nThe case is currently under review. Has anyone experienced a similar situation where PayPal reopened a previously closed case for manual review? If so, what happened after the review?",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "How to invest long-term when moving countries frequently?\n\nI am a beginner when it comes to investing, but I would like to get started with investing my money better. Due to my work, I have to move countries frequently and unpredictably (say, every 2-4 years), and it is hard to know where I will \"end up\" eventually. However, I don't want hold off on making long-term financial decisions any longer. So my question is quite broadly: \nWhat are good strategies to invest while moving frequently, and what are specific pitfalls to look out for?\n\nShould I try to concentrate my investments in a fixed country (say, my home country), or move them to my new place of residence any time I move? What are the costs to doing this?\n\nSome specific worries I have:\n\nHaving to liquidate my investments at an unfavorable time because I am moving\n\nMy accounts being closed when I am no longer resident in a country\n\nPaying prohibitive fees or taxes when transferring assets\n\nHaving to continue some sort of legal presence in a country after I moved away, e.g. for receiving mail, owing taxes\n\nIn my case, the countries in question are predominantly western european (Germany, Netherlands, UK), which I hope makes the answer easier, but I also appreciate general responses!",
+      "gold": "decision",
+      "predicted": "decision"
+    },
+    {
+      "text": "How to react to debt collection claim when the delay in payment is the creditor's fault?\n\nI regularly use services from a company, and the company sends me invoices. I have set up a direct debit authorization (Lastschriftmandat) for this company, and the invoices are paid by direct debit. This has been going on for years.\n\nI was recently contacted by a debt collection agency regarding an unpaid one-year-old invoice (June 2025) from this company. Like all the others, the invoice stated \"we will debit the money from your account in the following days\". However, in this particular case, the company never pulled the money from my account, so the bill is in fact unpaid. My bank account always had enough money and all other invoices from this company (before and after) have been successfully debited.\n\nI did not notice this at the time, and the company never contacted me about a failed direct debit. I did not know about the missing payment until the debt-collection agency contacted me, requesting payment of the invoice amount and additional debt-collection fees. At that point, I immediately paid the invoice amount to the creditor (not the debt collector), and disputed the claim of the debt collector, arguing that the delay in payment was due to the creditor not performing the agreed direct debit, and that I had fulfilled my obligation by providing the direct debit authorization, so I am not liable for debt-collection fees.\n\nAttempts to clarify this with the original creditor are futile. They do not have a phone number. To written requests, they either respond with unrelated AI-generated text or with pre-made text that contains blatant lies (\"after sending you several reminders, we passed the debt to a collector\", which is completely false and they do not answer when I ask them for proof of those reminders). From recent reviews of the company, it seems that the company is doing this same thing to other people too.\n\nMy greatest concern is this event messing up my credit score (Schufa). I have the feeling that if I pay the debt-collection fees, I will be admitting fault and that will negatively affect my score. Disputing the claim may, however, lead to an uncomfortable path (threats of higher costs, or a lawsuit).\n\nWhat would be the best course of action if the goal is to avoid a negative entry in my credit score?",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "new employer across the other side of the country\n\nI was contacted by a company called Pacific Shore Real Estate, out of  Bakersfield CA. The person claimed to be the CEOs son. I had applied to this job on line with a bunch of other jobs I want to work from home. (I'm in Syracuse now, retired.)\n\nSo I got email asking if I was interested as being his Field Assistant/personal assistant. The position is classified as 1099 personal work. Key Responsibilities:\n\nProperty inspections\n\nVacant unit inspections\n\nManage personal and business tasks while this individual is unavailable\n\nAssist with financial transactions and payment distribution\n\nIt's a legit company; I've researched all over the internet for 3 days and found nothing bad about this company.\n\nHe asked me if I had a bank account for direct deposit for my pay, and said that I would assist with financial transactions and payment distribution.\n\nQuestions:\n\nIf I just give him my account number and routing number, can they take money out of my account with just those two numbers?\n\nIf he wants me to pay things for him down here, what kind of flags am i looking for if he deposits money to my account to make payments?\n\nWhat if I don't give him that information and access?\n\nI'm just checking; I've never had a job like this.",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Options Sell query - sell strangle\n\nMy dear experiences traders,\n\nI am stepping myself into the world of trading and this is my first post with a query and would need to expert directions or inputs to help me understand my query.\n\nI understand:\n\nSELL Call - to make money stock price should be below the strike price.\n\nSELL Put - to make money stock price should be above the strike price.\n\nBy selling options you make money upfront as commissions.\n\nQuery -\n\nGiven the above understanding, I tested a strangle by selling a call and a put in different strike prices. What makes me stumble is that my understanding of selling options and getting an upfront commission should give me a fixed amount why the P&L is moving based on stock price in live market?\n\nPlease help me get educated here, I am losing sleep over this basic thing.",
+      "gold": "concept",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Is it reasonable to see myself being able to afford an $8,000-$10,000 car at 18?\n\nI'll be turning 18 in a month and I'm hoping to get a job and save up enough to get a decent used car. Specifically, I've been looking at used Subaru Outbacks and Crosstreks around $8k to $10k, I have also seen some around $5k and lower on Facebook Marketplace but I'm unsure if that is trustworthy or not.\n\nIf I am able to land a job, I'd be hoping to make around $1k a month (or more if possible.) I'm also hoping to get a credit card for small purchases to start building credit once I turn 18.\n\nWould it be reasonable for me to see myself reaching a goal of getting a car later this year? And what would be the best way for me to attain this goal?",
+      "gold": "decision",
+      "predicted": "decision"
+    },
+    {
+      "text": "Can HealthCare.gov force-change my plan variant mid-year due to an income increase?\n\nIn January 2026, I enrolled in a Healthcare.gov Marketplace plan with no deductible. I also was anticipating low income for 2026.\n\nIn September 2026, I experienced an unexpected income increase. To avoid receiving excess Advance Premium Tax Credit (APTC) that I\u2019d have to repay later, I called HealthCare.gov to update my income (the website frequently errors out, so the only way was to call). During the call, I explicitly asked the agent to keep me on my current plan so my accumulated deductible and out-of-pocket maximum progress wouldn't reset.\n\nYesterday, I received a new insurance card:\n\nPlan Name: Changed from \nBaylor Scott & White Marketplace HMO QHP / Bsw Premier HMO-Qhp\n to \nBaylor Scott & White HMO/PPO/EPO/TRS/Covenant / Bsw Plus HMO\n.\n\nCoverage: Benefits are significantly worse across the board - higher out-of-pocket maximum and a deductible.\n\nID Numbers: Member ID remains identical; the Group number is almost the same, with a few extra digits added.\n\nI called Baylor Scott & White (BSW), and they stated HealthCare.gov had enrolled me in a different plan variant (the last two digits of the Plan ID changed) and advised me to call HealthCare.gov back to switch me back.\n\nWhen I called HealthCare.gov, the representative claimed I am still in the \"same plan\", but that my variant/tier changed because my higher income made me ineligible for my original level.\n\nThe two questions I have:\n\nDoes HealthCare.gov\u2019s explanation make sense - can coverage/tiers be force changed mid-year by healthcare.gov like this, because my income increased?\n\nIf yes, why would anyone report a mid-year income increase on HealthCare.gov? Wouldn't it be better to simply reconcile APTC difference on April 15th? Or at least through w4, so that plan stays the same?",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Is a dealer offering a rebate for financing a car a red flag?\n\nI am planning on buying a new car. I do not have all the details worked out yet. I plan to pay cash for the car. Most of the dealers I went to said they could give me a rebate (typical 750) if I financed the car through them. They claim there is no penalty for paying off the loan early.\n\nThis does not seem right to me. I can understand why they would make money on the loan. I could see why a $50 rebate to finance the car would make sense. However, I think the car dealer has a trick and I want to know what it is.",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Can TurboTax grouping multiple RSU sales into fewer entries cause an IRS problem even if the totals still match my 1099-B?\n\nI\u2019m filing US taxes in TurboTax and imported stock sales from my broker.\nSome of my sales were from RSUs. After import, TurboTax appears to have grouped several RSU sales together instead of listing each broker-reported sale separately. I\u2019m trying to understand whether that is just a presentation/detail issue inside TurboTax, or whether it can create a real IRS reporting problem. Can TurboTax grouping multiple RSU sales into fewer entries cause an IRS problem even if the totals still match my 1099-B?\n\nThe grouping properly conserved the adjusted cost basis, whether it is a wash sale, the stock type (ESPP/RSU/regular), and was done only on the same stock. So from what I can see, the grouping doesn't lose any information aside from the grouping itself.",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Is Financial Services Protection limit relevant for Pensions?\n\nIn the UK the amount of protected by the FSC deposit limit has recently been increased.\n\nDeposit Limit Protection\n\nDoes this have any meaning for defined contribution pension accounts, which feels like the only place ordinary people are likely to have more than this limit saved? These are invested in stocks and shares and the actual money invested here is not directly linked to the pension provider. So my understanding is that even if the pension provider went bankrupt, that wouldn't have any affect on the holdings managed by that company?",
+      "gold": "concept",
+      "predicted": "procedure"
+    },
+    {
+      "text": "FDIC limits and payble on death\n\nA single person wants to open up a CD at a local bank for 300K. They want their deposit to\nbe fully covered by FDIC should the bank fail. If they specify, upon their death, the money will be split evenly among two people. Does that create an implied trust and give the person\nadditional FDIC coverage?\n\nI have been told that it does, but that does not seem right to me.",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Extra fees charged not included in quote, but included in T&C\n\nI signed up for a service, based on a cost breakdown from the salesperson (UK). At the end of the service, an exit fee was applied. This exit fee was not in the detailed cost breakdown I received when I signed up - but, on second reading, was part of T&C I agreed to. Company now insists I must pay the exit fee.\n\nWhat is my position? It feels of course dishonest on the part of the company. The salesman is unreachable despite numerous attempt. Unrelated people in the company insist I agreed to the T&C (which I did) and refuse to even acknowledge the cost breakdown.\n\nThe cost breakdown stops short of calling itself a \"quote\", however it is clearly a full cost breakdown. The salesman also convinced me, on a recorded phone line, to opt for the service with the exit fee, where an alternative without it was present. The alternative is cheaper when exit fee is not included, but with it, is more expensive.\n\nThe company is also holding a deposit, to be returned, only slightly smaller than the exit fee. Even if I can simply not pay this, they will surely hold on to the deposit. But perhaps I have some stronger options? The service was not paid for with a debit card, so while I have some recourse, it is perhaps not as good as if it were a credit card.",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "What sensible/viable alternative investment strategies are there?\n\nDisclaimer upfront, I am not looking for financial advice, just ideas/brainstorming.\n\nI, like I'm sure many here, have some investments in index funds (and not even counting pensions etc for now). I'm sure a lot of people are keeping track of what is happening with the SpaceX IPO, and how they are essentially forcing themselves into the indexes.\n\nThere is a widely held belief that this is tantamount to a rug-pull of sorts, but combined with the overall likely AI bubble, I've been thinking for a while now to get out of/diversify from the S&P500 and its ilk. Firms like nVidia are already massively overrepresented in the gains being made compared to historical norms, and the SpaceX IPO is truly insane.\n\nMy question is:\n what other/alternative investments could I consider? I'm mainly looking for things with similar properties to the main indexes (diversified, comparatively low risk etc), but without such a big exposure to the latest nonsense.",
+      "gold": "decision",
+      "predicted": "decision"
+    },
+    {
+      "text": "Accidental dividend overpayment received - do I have to return it?\n\nI have an investment (a VCT in the UK) which pays dividends every six months. The last dividend was accidentally paid to me twice by the administrative services company. They have asked, politely, for me to return the overpayment. The wording of the letter makes it sound like they're asking me for a favour, they don't state that it is required for me to repay it, and apparently they cannot reclaim it automatically. I don't object to repaying it, I haven't spent it and it's not an amount of money that's going to make a significant difference to my finances, but I am curious about the legal requirement.\n\nAm I obligated to repay the overpayment?\n\n(In trying to find the answer for myself, I'm only finding articles about company directors overpaying themselves and the tax implications of that.)",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "When should I apply for Social Security when I turn 70 in Dec 2026?\n\nWhen should I apply for Social Security when I turn 70 on Dec 12, 2026?",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Where can I find a daily exchange rate from EUR to USD that the IRS accepts?\n\nI\u2019m filing US taxes. Where can I find a daily exchange rate from EUR to USD that the IRS accepts? I know they accept \nhttps://fiscaldata.treasury.gov/datasets/treasury-reporting-rates-exchange/treasury-reporting-rates-of-exchange\n for the yearly rate, but I'd like to have a daily rate for a more accurate currency exchange to report capital gains, dividends and interests.",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Why were some brokerages so eager to place SpaceX IPO?\n\nIf the IPO was oversubscribed then why did some brokerages lower their \nminimum account balance requirement\n?\n\nThe SpaceX IPO may be available to Fidelity customers with as little\nas $2,000 in a retail brokerage account, lower than typical IPO\nrequirements due to increased share availability.\n\nBrokerage lowered two of its requirements for IPO participation:\n\nMinimum number of shares were lowered from 100 to 1.\n\nMinimum account balance required was lowered.\n\nWouldn't a retail investor question what is in it for the brokerage, as they are not non-profits.\n\nWhy they did not change the rules universally for all IPO offerings?",
+      "gold": "concept",
+      "predicted": "procedure"
+    },
+    {
+      "text": "How are people getting sub 5.5% rates on a 30 year fixed mortgage\n\nI keep seeing people mention they locked in rates below 5.5% recently and I'm honestly confused. Every lender I've talked to is quoting me 6.5%+ for a 30-year fixed.\n\nAre you buying points? Is this through credit unions? Special programs I'm not aware of?\n\nI have good credit (750+) and 20% down, so I don't think it's a qualification issue. Just trying to figure out what I'm missing here.\n\nWould appreciate any insight into how you actually secured these rates.",
+      "gold": "concept",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Combining Schedule C and Schedule E business miles for the 50% business-use test\n\nI have a truck with the following 2025 mileage:\n\nTotal miles driven is 5000 miles\n\nMiles driven by Turo guests who rented truck (Schedule C) is 2000 miles.\n\nMiles driven by me to manage rental properties (Schedule E) is 1000 miles.\n\nRemaining personal miles is 2000.\n\nCombined business use is 60%.\n\nBackground: In 2024, the truck was used only for my rental property, so business use was over 50%, and I began depreciating it with accelerated 5-year MACRS.\n\nThe problem: In TurboTax 2025, I split the truck into two assets, one on Schedule C with 2,000 miles and one on Schedule E with 1,000 miles. When I do that, neither asset gets accelerated depreciation. It looks like TurboTax tests each asset separately (40% and 20%), so each one fails the 50% test.\n\nQuestions:\n\nUnder the IRC, can I combine Schedule C and Schedule E business miles to meet the more-than-50% qualified business use test?\n\nIf so, how should I enter this in TurboTax or on the tax forms so the depreciation is calculated correctly (no double dip, but get depreciation)?",
+      "gold": "procedure",
+      "predicted": "procedure"
+    },
+    {
+      "text": "Do multiple credit cards help or hurt credit score for young person with no credit yet?\n\nMy (19 year old) son has no credit score and just got an entry level first credit card. He then got an offer for a a much better credit card (in terms of cash rewards).\n\nWill having two cards be better or worse for credit score than having one, in the long term?\n\nHe won't actually be buying anything that requires a good credit score (like a house or car) in the foreseeable future, just building creditworthiness for someday. I am also not worried about him getting into trouble spending too much just because he has two cards. I just want to know what that second card will do to his credit over the course of the next few years.",
+      "gold": "decision",
+      "predicted": "decision"
+    },
+    {
+      "text": "Why can only US residents participate in some IPOs?\n\nI read these kinds of disclaimers regarding IPOs in US markets (the quote below is from E-Trade's internal portal):\n\nTo participate in the [company name] IPO through [broker name], you do not need a minimum account balance, but you must be a U.S. resident with an active, eligible brokerage or IRA account and a completed Investor Profile. [broker name] acts as part of the [bank name] underwriter network.\n\nWhy can only US residents participate in some IPOs in the US?",
+      "gold": "concept",
+      "predicted": "procedure"
+    }
+  ]
+}
