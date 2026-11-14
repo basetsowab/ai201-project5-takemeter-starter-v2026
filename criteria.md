@@ -51,63 +51,48 @@ whether you hit them:
 
 ---
 
-## 1.
+## 1. Overall accuracy of at least 0.72 on the held-out test split
 
-<!-- Your criterion. It must name a number. -->
-
-
-
-**Why this target:**
-
-
+**Why this target:** `procedure` is 59% of my 210 posts, so a model that only
+ever says `procedure` already scores about 0.59. 0.72 is the smallest number
+that means it learned something beyond guessing the biggest label, with room
+for the 32-post test split, where one post is worth about 3 points.
 
 ---
 
-## 2.
+## 2. Macro F1 of at least 0.60
 
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
-
-
+**Why this target:** accuracy hides my small labels, because getting
+`procedure` right carries most of the score. Macro F1 weights `concept`,
+`procedure` and `decision` equally, so it can't pass on `procedure` alone.
+0.60 is set below criterion 1 because `decision` will drag it down (see 3).
 
 ---
 
-## 3.
+## 3. F1 for `decision` of at least 0.40
 
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
-
-
+**Why this target:** `decision` is my smallest label. It has 26 posts, so only
+about 4 land in the test split, and one post moves its F1 by 0.2 or more. A
+looser target than the others is honest for 4 examples. Below 0.40, the model
+would be finding fewer than half of the "what should I do" posts, which is the
+label a reader of this forum would most want flagged.
 
 ---
 
-## 4.
+## 4. F1 for `procedure` of at least 0.80
 
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
-
-
+**Why this target:** with 124 examples (about 19 in test), `procedure` is the
+label with enough data to be held to a high bar. Most posts in it name a form,
+a rule, a fee or an institution, so the words themselves carry a strong signal.
 
 ---
 
-## 5.
+## 5. The most-confident third of test predictions is at least 0.15 more accurate than the least-confident third
 
-<!-- Your criterion. -->
-
-
-
-**Why this target:**
-
-
+**Why this target:** if a confident guess isn't more reliable than an unsure
+one, the confidence score can't be used to route the unsure posts to a person.
+The notebook's confidence report measures exactly this gap. 0.15 is about 2
+posts out of a third of 32, so it's the smallest gap that isn't noise.
 
 ---
 
