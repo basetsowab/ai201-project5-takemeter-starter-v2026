@@ -389,39 +389,74 @@ majority label.
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** one setting, `EPOCHS` from 3 to 10, in section 2 of the
+notebook. Nothing else changed: same `labels.csv`, same seeds, learning rate
+2e-5, batch size 16, max length 128. `RUN_LABEL` was set to `"after"`, so the
+before-numbers weren't overwritten.
 
-**Which diagnosis pointed at it:**
+**Which diagnosis pointed at it:** the before-run gave the same single-column
+confusion matrix on all three seeds. That pointed at the training budget
+(about 30 steps) rather than at any one split. Ten epochs gives the model
+about 100 steps.
 
 ### Run Log — After
 
+Results are in `results_three_seeds_after.json`.
+
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.72 | 0.781 | 0.750 | 0.688 | MISSED |
+| 2. Macro F1 | ≥ 0.60 | 0.545 | 0.522 | 0.460 | MISSED |
+| 3. F1 `decision` | ≥ 0.40 | 0.000 | 0.000 | 0.000 | MISSED |
+| 4. F1 `procedure` | ≥ 0.80 | 0.872 | 0.829 | 0.791 | MISSED |
+| 5. Confidence gap | ≥ 0.15 | 0.60 | 0.30 | 0.40 | MET |
 
-**Did it help, and how do I know:**
+Confusion matrix after, seed 42:
 
-<!-- If it didn't, say so. Relabelling that didn't help is a genuinely
-     interesting result and earns full credit. -->
+| true \ predicted | concept | procedure | decision |
+|---|---|---|---|
+| **concept** | 8 | 1 | 0 |
+| **procedure** | 2 | 17 | 0 |
+| **decision** | 2 | 2 | 0 |
 
-
+**Did it help, and how do I know:** yes, a lot, but not enough to flip a
+verdict. On the same splits, accuracy rose from 0.594 to between 0.688 and
+0.781. `concept` went from F1 0.000 to between 0.588 and 0.762. The model
+now actually separates `concept` from `procedure`, which it never did before.
+Criteria 1 and 4 are now met on two of three seeds, but seed 2024 falls just
+short (0.688 and 0.791), and a target has to hold on all three. The accuracy
+spread is now 0.094, and criterion 1's target of 0.72 sits inside that band.
+Seed 42 now beats the zero-shot baseline's 0.719, but seed 2024 doesn't, so
+the fine-tune isn't reliably better than no training.
 
 ---
 
 ## What's Still Broken
 
-<!-- For each criterion still missed: what you'd do, and why you stopped. -->
-
-
+- **Criterion 3, `decision`, F1 0.000 on every seed.** The model still never
+  predicts `decision`: the 4 test posts go to `concept` or `procedure`. With
+  only 18 training examples it doesn't learn the label, even though the
+  zero-shot baseline found all 4 from the definition alone. The next fix would
+  be collecting more `decision` posts (at least 50). Money.SE has fewer of
+  them than Reddit would, so that means pulling a bigger, older batch.
+- **Criterion 2, macro F1.** It's capped by `decision` scoring 0. With
+  `decision` at 0, reaching 0.60 would need `concept` and `procedure` to
+  average an F1 of 0.90, well above what either reaches now, so in practice it
+  can't pass until criterion 3 does.
+- **Criteria 1 and 4.** These miss on one seed out of three. More epochs or
+  more data would probably steady them, but I stopped at one change, as the
+  brief asks.
 
 **The gap between what I meant my labels to capture and what the model
-learned:**
-<!-- Two sentences. Your confusion matrix is the evidence. -->
+learned:** I meant `decision` to capture "what should I do", but the model
+learned only the line between explaining something and looking up a rule; it
+sorts every "should I" post into one of those two. All 4 real `decision`
+posts in the after-matrix land in `concept` or `procedure`, and none goes the
+other way.
 
+<!-- TODO (basetsowab): check these against the agreement report once you have
+     data/staff_labels.csv, and say whether the concept/procedure confusion
+     is a labelling problem or a model problem. -->
 
 
 <!-- ═════════════════════════════════════════════════════════════════════
